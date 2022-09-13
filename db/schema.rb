@@ -10,6 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2022_09_13_222552) do
 
+  create_table "auditoria", force: :cascade do |t|
+    t.integer "capacity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.decimal "total_amount", precision: 10, scale: 2
+    t.integer "order_id", null: false
+    t.integer "ticket_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["ticket_type_id"], name: "index_line_items_on_ticket_type_id"
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.integer "length"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.decimal "total_amount", precision: 10, scale: 2
+    t.string "payment_token"
+    t.integer "showtime_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_orders_on_email"
+    t.index ["payment_token"], name: "index_orders_on_payment_token"
+    t.index ["showtime_id"], name: "index_orders_on_showtime_id"
+  end
+
+  create_table "showtimes", force: :cascade do |t|
+    t.datetime "start_time"
+    t.integer "availability"
+    t.integer "movie_id", null: false
+    t.integer "auditorium_id", null: false
+    t.datetime "end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auditorium_id"], name: "index_showtimes_on_auditorium_id"
+    t.index ["movie_id"], name: "index_showtimes_on_movie_id"
+    t.index ["start_time"], name: "index_showtimes_on_start_time"
+  end
+
+  create_table "ticket_types", force: :cascade do |t|
+    t.string "ticket_type"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "ticket_types"
+  add_foreign_key "orders", "showtimes"
+  add_foreign_key "showtimes", "auditoria"
+  add_foreign_key "showtimes", "movies"
 end

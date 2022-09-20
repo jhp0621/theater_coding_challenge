@@ -1,0 +1,26 @@
+<%= form_with(model: @order, local:true) do |form| %>
+   <% if @order.errors.any? %>
+      <ul>
+        <% @order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name, class: 'form-control' %>
+
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name, class: 'form-control' %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email, class: 'form-control' %>
+
+  <%= form.label :credit_card %>
+  <%= form.text_field :credit_card, class: 'form-control' %>
+
+  <%= form.label :expiration_month %>
+  <%= form.text_field :expiration_year, class: 'form-control' %>
+
+  <%= form.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

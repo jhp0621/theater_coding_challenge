@@ -1,0 +1,4 @@
+<%= @movie.title %>
+<% @movie.showtimes.each do |showtime| %>
+  <%= showtime.start_time %>
+<% end %>

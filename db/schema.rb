@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_13_222552) do
+ActiveRecord::Schema.define(version: 2022_09_20_182204) do
 
   create_table "auditoria", force: :cascade do |t|
     t.integer "capacity"
@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(version: 2022_09_13_222552) do
     t.string "last_name"
     t.string "email"
     t.decimal "total_amount", precision: 10, scale: 2
-    t.string "payment_token"
     t.integer "showtime_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "credit_card_number"
+    t.integer "expiration_month"
+    t.integer "expiration_year"
     t.index ["email"], name: "index_orders_on_email"
-    t.index ["payment_token"], name: "index_orders_on_payment_token"
     t.index ["showtime_id"], name: "index_orders_on_showtime_id"
   end
 

@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_09_20_182204) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "auditoria", force: :cascade do |t|
     t.integer "capacity"
     t.datetime "created_at", precision: 6, null: false
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 2022_09_20_182204) do
   create_table "line_items", force: :cascade do |t|
     t.integer "quantity"
     t.decimal "total_amount", precision: 10, scale: 2
-    t.integer "order_id", null: false
-    t.integer "ticket_type_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "ticket_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_line_items_on_order_id"
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_09_20_182204) do
     t.string "last_name"
     t.string "email"
     t.decimal "total_amount", precision: 10, scale: 2
-    t.integer "showtime_id", null: false
+    t.bigint "showtime_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "credit_card_number"
@@ -54,8 +57,8 @@ ActiveRecord::Schema.define(version: 2022_09_20_182204) do
   create_table "showtimes", force: :cascade do |t|
     t.datetime "start_time"
     t.integer "availability"
-    t.integer "movie_id", null: false
-    t.integer "auditorium_id", null: false
+    t.bigint "movie_id", null: false
+    t.bigint "auditorium_id", null: false
     t.datetime "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

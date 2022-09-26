@@ -1,3 +1,7 @@
+<h1>Purchase ticket</h1>
+<div>Movie title: <%= @showtime.movie.title %></div>
+<div>Time: <%= @showtime.start_time %></div>
+
 <%= form_with(model: @order, local:true) do |form| %>
    <% if @order.errors.any? %>
       <ul>
@@ -8,19 +12,19 @@
   <% end %>
 
   <%= form.label :first_name %>
-  <%= form.text_field :first_name, class: 'form-control' %>
+  <%= form.text_field :first_name %>
 
   <%= form.label :last_name %>
-  <%= form.text_field :last_name, class: 'form-control' %>
+  <%= form.text_field :last_name %>
 
   <%= form.label :email %>
-  <%= form.email_field :email, class: 'form-control' %>
+  <%= form.email_field :email %>
 
   <%= form.label :credit_card %>
-  <%= form.text_field :credit_card, class: 'form-control' %>
+  <%= form.text_field :credit_card %>
 
   <%= form.label :expiration_month %>
-  <%= form.text_field :expiration_year, class: 'form-control' %>
+  <%= form.text_field :expiration_year %>
 
-  <%= form.submit yield(:button_text), class: "btn btn-primary" %>
+  <%= form.submit "Submit" %>
 <% end %>

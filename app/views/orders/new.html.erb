@@ -1,6 +1,11 @@
+<% @title = @showtime.movie.title %>
+<% @start_time = @showtime.start_time %>
+<% @availability = @showtime.availability %>
+<% @min = 1 %>
+
 <h1>Purchase ticket</h1>
-<div>Movie title: <%= @showtime.movie.title %></div>
-<div>Time: <%= @showtime.start_time %></div>
+<div>Movie title: <%= @title %></div>
+<div>Time: <%= @start_time %></div>
 
 <%= form_with(model: @order, local:true) do |form| %>
    <% if @order.errors.any? %>
@@ -10,6 +15,9 @@
         <% end %>
       </ul>
   <% end %>
+
+  <%= form.label :quantity %>
+  <%= form.number_field :quantity, in: "#{@min}".."#{@availability}" %>
 
   <%= form.label :first_name %>
   <%= form.text_field :first_name %>
@@ -23,8 +31,8 @@
   <%= form.label :credit_card %>
   <%= form.text_field :credit_card %>
 
-  <%= form.label :expiration_month %>
-  <%= form.text_field :expiration_year %>
+  <%= form.label :expiration_date %>
+  <%= form.month_field :expiration_date %>
 
   <%= form.submit "Submit" %>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_20_182204) do
+ActiveRecord::Schema.define(version: 2022_09_26_224444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,9 +47,8 @@ ActiveRecord::Schema.define(version: 2022_09_20_182204) do
     t.bigint "showtime_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "credit_card_number"
-    t.integer "expiration_month"
-    t.integer "expiration_year"
+    t.string "credit_card_number"
+    t.string "expiration_date"
     t.index ["email"], name: "index_orders_on_email"
     t.index ["showtime_id"], name: "index_orders_on_showtime_id"
   end

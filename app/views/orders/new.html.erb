@@ -8,6 +8,8 @@
 <div>Time: <%= @start_time %></div>
 
 <%= form_with(model: @order, local:true) do |form| %>
+<%= form.hidden_field :showtime_id, value: @showtime.id %>
+
    <% if @order.errors.any? %>
       <ul>
         <% @order.errors.each do |error| %>
@@ -28,11 +30,12 @@
   <%= form.label :email %>
   <%= form.email_field :email %>
 
-  <%= form.label :credit_card %>
-  <%= form.text_field :credit_card %>
+  <%= form.label :credit_card_number %>
+  <%= form.text_field :credit_card_number %>
 
   <%= form.label :expiration_date %>
-  <%= form.month_field :expiration_date %>
+  <!-- to do: find out why month_field is not working -->
+  <%= form.text_field :expiration_date %>
 
   <%= form.submit "Submit" %>
 <% end %>

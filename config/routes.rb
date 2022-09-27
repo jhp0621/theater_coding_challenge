@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root 'movies#index'
-  get '/order', to: 'orders#new'
+  # get '/order', to: 'orders#new'
 
   resources :movies
-
   resources :orders
 end

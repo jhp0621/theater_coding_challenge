@@ -11,6 +11,14 @@
   </head>
 
   <body>
+    <% flash.each do |name, message| %>
+     <div class="flash-message-container" data-controller="flash">
+      <div class="<%= name %> dismissible flash-message" role="alert">
+       <!-- <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
+       <p><%= message %></p>
+      </div>
+     </div>
+     <% end %>
     <%= yield %>
   </body>
 </html>

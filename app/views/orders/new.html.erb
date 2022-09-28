@@ -2,6 +2,9 @@
 <% @start_time = @showtime.start_time %>
 <% @availability = @showtime.availability %>
 <% @min = 1 %>
+<% @months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'] %>
+<% @year = Date.today.strftime("%y").to_i %>
+<% @years = (@year...@year+11).to_a %>
 
 <h1>Purchase ticket</h1>
 <div>Movie title: <%= @title %></div>
@@ -33,9 +36,13 @@
   <%= form.label :credit_card_number %>
   <%= form.text_field :credit_card_number %>
 
-  <%= form.label :expiration_date %>
-  <!-- to do: find out why month_field is not working -->
-  <%= form.text_field :expiration_date %>
+  <div>Expiration Date</div>
+  <%= form.label :month %>
+  <%= form.select :month, @months, :prompt => 'MM' %>
+
+  <%= form.label :year %>
+  <%= form.select :year, @years, :prompt => 'YY' %>
+
 
   <%= form.submit "Submit" %>
 <% end %>

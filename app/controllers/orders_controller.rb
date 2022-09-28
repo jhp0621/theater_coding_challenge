@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
   end
 
   def create
+    p "here" 
+    p order_params
     @showtime = Showtime.find(order_params[:showtime_id])
     @order = BuildOrder.new(order_params).call()
     if @order.save
@@ -25,6 +27,10 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:first_name, :last_name, :email, :credit_card_number, :expiration_date, :showtime_id, :quantity)
+    # question: why am I getting "Unpermitted parameters: :month, :year" error when they are not specified in permit??
+    @order_params = params.require(:order).permit(:first_name, :last_name, :email, :credit_card_number, :showtime_id, :quantity)
+    @order_params[:expiration_month] = params[:order][:month]
+    @order_params[:expiration_year] = params[:order][:year]
+    @order_params
   end
 end

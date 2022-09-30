@@ -32,3 +32,9 @@ showtimes = Showtime.create([
                               { movie: movies[1], start_time:  "#{dates[1]} #{times[1]}", auditorium: auditoria[0],
                                 availability: 5 }
                             ])
+
+ticket_types = TicketType.create([
+  { category: "child", price: 5.00, },
+  { category: "adult", price: 10.00, },
+  { category: "senior", price: 3.00, }
+])

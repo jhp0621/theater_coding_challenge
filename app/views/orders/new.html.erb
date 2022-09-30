@@ -5,6 +5,9 @@
 <% @months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'] %>
 <% @year = Date.today.strftime("%y").to_i %>
 <% @years = (@year...@year+11).to_a %>
+<% @child_ticket = TicketType.find_by category: 'child' %>
+<% @adult_ticket = TicketType.find_by category: 'adult' %>
+<% @senior_ticket = TicketType.find_by category: 'senior'%>
 
 <h1>Purchase ticket</h1>
 <div>Movie title: <%= @title %></div>
@@ -21,8 +24,19 @@
       </ul>
   <% end %>
 
-  <%= form.label :quantity %>
-  <%= form.number_field :quantity, in: "#{@min}".."#{@availability}" %>
+  <div>Ticket Quantity</div>
+
+   <%= form.label :child %>
+   <%= form.number_field :child, min: 0 %>
+   <%= @child_ticket.price %>
+
+   <%= form.label :adult %>
+   <%= form.number_field :adult, min: 0 %>
+   <%= @adult_ticket.price %>
+
+  <%= form.label :senior %>
+  <%= form.number_field :senior, min: 0 %>
+  <%= @senior_ticket.price %>
 
   <%= form.label :first_name %>
   <%= form.text_field :first_name %>
@@ -38,10 +52,10 @@
 
   <div>Expiration Date</div>
   <%= form.label :month %>
-  <%= form.select :month, @months, :prompt => 'MM' %>
+  <%= form.select :expiration_month, @months, :prompt => 'MM' %>
 
   <%= form.label :year %>
-  <%= form.select :year, @years, :prompt => 'YY' %>
+  <%= form.select :expiration_year, @years, :prompt => 'YY' %>
 
 
   <%= form.submit "Submit" %>

@@ -1,0 +1,8 @@
+<h1>Your order has been placed.</h1>
+<p>Thanks for your order <%= @order.first_name %>.</p>
+
+<h2>Order Details</h2>
+<div>
+  <p>Placed on: <%= @order.created_at %></p>
+  <p>Total: <%= @order.total_amount %></p>
+</div>
